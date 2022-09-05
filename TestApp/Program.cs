@@ -1,10 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-internal class Program
+public class Program
 {
-    public static string testThis(string arg) 
+    public static void Main(string[] args)
     {
-        var program = new Program();
-        var result = program("test");
+        Console.WriteLine("Hello World!");
     }
 }

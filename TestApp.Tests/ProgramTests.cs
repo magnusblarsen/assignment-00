@@ -1,12 +1,20 @@
 namespace TestApp.Tests;
 
-using Xunit;
 public class ProgramTests
 {
     [Fact]
     public void TestHelloWorld()
     {
-        var program = new Program();
-        program.testThis(arg);    
+        // Arrange
+        using var writer = new StringWriter();
+        Console.SetOut(writer);
+
+         // Act
+        var program = Assembly.Load(nameof(TestApp));
+        program.EntryPoint?.Invoke(null, new[] { Array.Empty<string>() });
+
+        // Assert
+        var output = writer.GetStringBuilder().ToString().TrimEnd();
+        output.Should().Be("Hello World!");
     }
 }
