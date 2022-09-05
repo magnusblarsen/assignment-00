@@ -59,5 +59,24 @@ public class ProgramTests
         result1511.Should().BeFalse();
         result47.Should().BeFalse();
     }
+
+
+    [Fact]
+    public void TestEdgeCaseDivideBy100()
+    {
+        // Arrange
+        using var writer = new StringWriter();
+        Console.SetOut(writer);
+
+         // Act
+        var program = Assembly.Load(nameof(TestApp));
+        bool result1300 = Program.isLeapYear(1300);
+        bool result1600 = Program.isLeapYear(1600);
+        
+
+        // Assert
+        result1300.Should().BeFalse();
+        result1600.Should().BeTrue();
+    }
     
 }
