@@ -9,6 +9,10 @@ public class Program
 
     public static bool isLeapYear(int year) 
     {
+        if(year % 4 == 0) 
+        {
+            return true;
+        }
         return false;
     }
 }

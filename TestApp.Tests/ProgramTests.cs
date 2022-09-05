@@ -50,7 +50,7 @@ public class ProgramTests
          // Act
         var program = Assembly.Load(nameof(TestApp));
         bool result2006 = Program.isLeapYear(2006);
-        bool result1511 = Program.isLeapYear(1512);
+        bool result1511 = Program.isLeapYear(1511);
         bool result47 = Program.isLeapYear(47);
         
 
