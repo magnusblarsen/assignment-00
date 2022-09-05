@@ -6,4 +6,9 @@ public class Program
     {
         Console.WriteLine("Hello World!");
     }
+
+    public static bool isLeapYear(int year) 
+    {
+        return false;
+    }
 }
