@@ -4,16 +4,26 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Hello World!");
+        string result = isLeapYear(getInput()) ? "yay" : "nay";
+        Console.WriteLine(result);
     }
 
-    public static bool isLeapYear(int year) 
+    public static int getInput()
     {
-        if(year % 4 == 0) 
+        string? line = Console.ReadLine();
+        if (line != null)
         {
-            if(year % 100 == 0)
+            return int.Parse(line);
+        }
+        return -1;
+    }
+    public static bool isLeapYear(int year)
+    {
+        if (year % 4 == 0)
+        {
+            if (year % 100 == 0)
             {
-                if(year % 400 == 0)
+                if (year % 400 == 0)
                 {
                     return true;
                 }
