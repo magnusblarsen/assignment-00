@@ -2,21 +2,21 @@ namespace TestApp.Tests;
 
 public class ProgramTests
 {
-    [Fact]
-    public void TestHelloWorld()
-    {
-        // Arrange
-        using var writer = new StringWriter();
-        Console.SetOut(writer);
+    // [Fact]
+    // public void TestHelloWorld()
+    // {
+    //     // Arrange
+    //     using var writer = new StringWriter();
+    //     Console.SetOut(writer);
 
-         // Act
-        var program = Assembly.Load(nameof(TestApp));
-        program.EntryPoint?.Invoke(null, new[] { Array.Empty<string>() });
+    //      // Act
+    //     var program = Assembly.Load(nameof(TestApp));
+    //     program.EntryPoint?.Invoke(null, new[] { Array.Empty<string>() });
 
-        // Assert
-        var output = writer.GetStringBuilder().ToString().TrimEnd();
-        output.Should().Be("Hello World!");
-    }
+    //     // Assert
+    //     var output = writer.GetStringBuilder().ToString().TrimEnd();
+    //     output.Should().Be("Hello World!");
+    // }
 
 
     [Fact]
@@ -65,11 +65,9 @@ public class ProgramTests
     public void TestEdgeCaseDivideBy100()
     {
         // Arrange
-        using var writer = new StringWriter();
-        Console.SetOut(writer);
+        var program = Assembly.Load(nameof(TestApp));
 
          // Act
-        var program = Assembly.Load(nameof(TestApp));
         bool result1300 = Program.isLeapYear(1300);
         bool result1600 = Program.isLeapYear(1600);
         
@@ -78,5 +76,40 @@ public class ProgramTests
         result1300.Should().BeFalse();
         result1600.Should().BeTrue();
     }
+
+    [Fact]
+    public void OutputNay()
+    {
+        // Arrange
+        using var writer = new StringWriter();
+        Console.SetOut(writer);
+        using var reader = new StringReader("1900");
+        Console.SetIn(reader);
+
+        // Act
+        var program = Assembly.Load(nameof(TestApp));
+        program.EntryPoint?.Invoke(null, new[] { Array.Empty<string>() }); 
     
+        // Assert
+        var output = writer.GetStringBuilder().ToString().TrimEnd();
+        output.Should().Be("nay");
+    }
+    
+    [Fact]
+    public void OutputYay()
+    {
+        // Arrange
+        using var writer = new StringWriter();
+        Console.SetOut(writer);
+        using var reader = new StringReader("2000");
+        Console.SetIn(reader);
+
+        // Act
+        var program = Assembly.Load(nameof(TestApp));
+        program.EntryPoint?.Invoke(null, new[] { Array.Empty<string>() }); 
+    
+        // Assert
+        var output = writer.GetStringBuilder().ToString().TrimEnd();
+        output.Should().Be("yay");
+    }
 }
